@@ -1,0 +1,141 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Design System: Handvantage Marketing */
+@theme inline {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  /* Brand Colors - Handvantage Blue */
+  --color-brand-50: oklch(0.97 0.02 250);
+  --color-brand-100: oklch(0.93 0.04 250);
+  --color-brand-200: oklch(0.86 0.08 250);
+  --color-brand-300: oklch(0.76 0.12 250);
+  --color-brand-400: oklch(0.65 0.18 250);
+  --color-brand-500: oklch(0.55 0.22 250);
+  --color-brand-600: oklch(0.50 0.22 250);
+  --color-brand-700: oklch(0.42 0.18 250);
+  --color-brand-800: oklch(0.35 0.14 250);
+  --color-brand-900: oklch(0.28 0.10 250);
+  
+  /* Semantic Colors */
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.15 0.01 250);
+  --color-muted: oklch(0.96 0.005 250);
+  --color-muted-foreground: oklch(0.5 0.02 250);
+  --color-border: oklch(0.92 0.01 250);
+  --color-ring: var(--color-brand-500);
+  
+  /* Accent Colors */
+  --color-success: oklch(0.65 0.2 145);
+  --color-warning: oklch(0.75 0.18 85);
+  --color-error: oklch(0.6 0.22 25);
+  
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+:root {
+  --primary: var(--color-brand-500);
+  --primary-foreground: oklch(1 0 0);
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold tracking-tight;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-brand-700;
+  }
+  
+  .bg-gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+  }
+  
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-brand-400;
+}

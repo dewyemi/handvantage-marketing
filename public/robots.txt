@@ -1,0 +1,9 @@
+# Handvantage Marketing Site
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://handvantage360.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
