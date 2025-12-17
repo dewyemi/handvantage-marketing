@@ -4,22 +4,28 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { useState, createElement } from "react";
 import {
   Phone,
   MessageSquare,
   Calendar,
   Zap,
-  Clock,
   DollarSign,
   ArrowRight,
   CheckCircle2,
   Building2,
   Stethoscope,
   Home as HomeIcon,
-  Star,
   TrendingUp,
   Shield,
   Bot,
+  Settings,
+  Link2,
+  PlayCircle,
+  Users,
+  BarChart3,
+  Truck,
+  Heart,
 } from "lucide-react";
 
 const fadeInUp = {
@@ -130,22 +136,330 @@ function HeroSection() {
                   <p className="text-xs text-muted-foreground">Availability</p>
                 </div>
                 <div className="text-center p-4 bg-muted rounded-xl">
-                  <p className="text-2xl font-bold text-brand-600">3s</p>
-                  <p className="text-xs text-muted-foreground">Avg Response</p>
+                  <p className="text-2xl font-bold text-brand-600">&lt;3s</p>
+                  <p className="text-xs text-muted-foreground">Response Time</p>
                 </div>
                 <div className="text-center p-4 bg-muted rounded-xl">
-                  <p className="text-2xl font-bold text-brand-600">98%</p>
-                  <p className="text-xs text-muted-foreground">Satisfaction</p>
+                  <p className="text-2xl font-bold text-brand-600">100%</p>
+                  <p className="text-xs text-muted-foreground">Call Capture</p>
                 </div>
               </div>
             </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 bg-success text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-float">
-              +$10k/mo recovered
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// How It Works Section
+function HowItWorksSection() {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [activeStep, setActiveStep] = useState(1);
+
+  const steps = [
+    {
+      id: 1,
+      title: "Train Your AI on Your Data",
+      subtitle: "Accurate and Effortless",
+      description: "Upload your business information, FAQs, and service details. Our AI learns your brand voice, offerings, and processes in minutes.",
+      icon: Settings,
+    },
+    {
+      id: 2,
+      title: "Set Up Your AI Agent",
+      subtitle: "No Coding Needed",
+      description: "Simply create your AI agent on our intuitive platform with zero coding required. Easily customize the design and functionality to meet your business needs.",
+      icon: Bot,
+    },
+    {
+      id: 3,
+      title: "Integrate Seamlessly",
+      subtitle: "With Your Tools and Data Source",
+      description: "Connect with your existing CRM, calendar, phone system, and other tools. Your AI agent syncs with your workflow automatically.",
+      icon: Link2,
+    },
+    {
+      id: 4,
+      title: "Automate Customer Interactions",
+      subtitle: "& Workflows",
+      description: "Go live and let your AI handle calls, chats, bookings, and follow-ups. Monitor performance and optimize in real-time.",
+      icon: PlayCircle,
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 text-white relative overflow-hidden" ref={ref}>
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand-500/10 via-transparent to-transparent" />
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 bg-brand-500/20 rounded-full text-brand-300 text-sm font-medium mb-6">
+            How it works
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold mb-6">
+            How Handvantage 360 Works
+          </motion.h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Side - Steps */}
+          <motion.div
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            variants={staggerContainer}
+            className="space-y-4"
+          >
+            {steps.map((step) => (
+              <motion.div
+                key={step.id}
+                variants={fadeInUp}
+                onClick={() => setActiveStep(step.id)}
+                className={`cursor-pointer rounded-2xl p-6 transition-all duration-300 ${
+                  activeStep === step.id
+                    ? "bg-brand-600 shadow-xl shadow-brand-500/30"
+                    : "bg-white/5 hover:bg-white/10"
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                    activeStep === step.id ? "bg-white/20" : "bg-white/10"
+                  }`}>
+                    <span className="text-2xl font-bold">{step.id}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-1">{step.title}</h3>
+                    <p className={`text-sm mb-2 ${
+                      activeStep === step.id ? "text-white/90" : "text-white/60"
+                    }`}>
+                      {step.subtitle}
+                    </p>
+                    {activeStep === step.id && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="text-white/80 text-sm leading-relaxed"
+                      >
+                        {step.description}
+                      </motion.p>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Right Side - Visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+              <div className="aspect-video bg-slate-800 rounded-2xl flex items-center justify-center overflow-hidden">
+                {/* Placeholder for demo video/image */}
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-brand-500/20 flex items-center justify-center">
+                    {createElement(steps[activeStep - 1].icon, { size: 40, className: "text-brand-400" })}
+                  </div>
+                  <p className="text-white/60 text-sm">Step {activeStep}: {steps[activeStep - 1].title}</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="text-center mt-12"
+        >
+          <a href="https://app.handvantage360.com" target="_blank" rel="noopener noreferrer">
+            <Button size="xl" className="bg-white text-brand-700 hover:bg-white/90">
+              Get started
+              <ArrowRight size={20} />
+            </Button>
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Use Cases Section with Tabs
+function UseCasesSection() {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [activeTab, setActiveTab] = useState<"inbound" | "outbound">("inbound");
+
+  const inboundUseCases = [
+    {
+      icon: Heart,
+      title: "Healthcare",
+      color: "from-green-500 to-emerald-500",
+      features: [
+        "Schedule appointments, answer patient FAQs, and monitor treatments",
+        "Telehealth check-ins ensuring better patient care",
+      ],
+    },
+    {
+      icon: DollarSign,
+      title: "Finance & Insurance",
+      color: "from-blue-500 to-cyan-500",
+      features: [
+        "Assist with claims, policy inquiries, and general support",
+        "Offer seamless banking and insurance solutions",
+      ],
+    },
+    {
+      icon: Building2,
+      title: "Real Estate",
+      color: "from-purple-500 to-indigo-500",
+      features: [
+        "Handle property inquiries and schedule viewings",
+        "Automate realtor office interactions with AI",
+      ],
+    },
+    {
+      icon: HomeIcon,
+      title: "Hospitality & Restaurants",
+      color: "from-pink-500 to-rose-500",
+      features: [
+        "Manage reservations, provide menu details, and handle bookings",
+        "Improve customer experience with AI-powered automation",
+      ],
+    },
+  ];
+
+  const outboundUseCases = [
+    {
+      icon: Users,
+      title: "Customer Experience",
+      color: "from-green-500 to-emerald-500",
+      features: [
+        "Collect real-time feedback through satisfaction surveys",
+        "Improve engagement with AI-driven insights",
+      ],
+    },
+    {
+      icon: TrendingUp,
+      title: "Sales & Lead Generation",
+      color: "from-blue-500 to-cyan-500",
+      features: [
+        "Identify potential clients and screen prospects",
+        "Automate outreach for better conversions",
+      ],
+    },
+    {
+      icon: BarChart3,
+      title: "Finance Management",
+      color: "from-purple-500 to-indigo-500",
+      features: [
+        "Automate debt collection and repayment reminders",
+        "Enhance recovery rates with AI-driven follow-ups",
+      ],
+    },
+    {
+      icon: Truck,
+      title: "Logistics & Operations",
+      color: "from-orange-500 to-red-500",
+      features: [
+        "Provide shipment tracking and delivery updates",
+        "Notify customers about order status in real-time",
+      ],
+    },
+  ];
+
+  const currentUseCases = activeTab === "inbound" ? inboundUseCases : outboundUseCases;
+
+  return (
+    <section className="py-24 bg-gradient-to-br from-slate-50 to-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="text-center mb-16"
+        >
+          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 bg-brand-100 rounded-full text-brand-700 text-sm font-medium mb-6">
+            Use Cases
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold mb-6">
+            From Pain Points to Solutions.
+            <br />
+            <span className="text-gradient">One Platform</span>
+          </motion.h2>
+        </motion.div>
+
+        {/* Tabs */}
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="flex justify-center mb-12"
+        >
+          <div className="inline-flex rounded-full bg-white border border-border p-1 shadow-sm">
+            <button
+              onClick={() => setActiveTab("inbound")}
+              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeTab === "inbound"
+                  ? "bg-brand-600 text-white shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Inbound Support
+            </button>
+            <button
+              onClick={() => setActiveTab("outbound")}
+              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeTab === "outbound"
+                  ? "bg-brand-600 text-white shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Outbound Engagement
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Use Cases Grid */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {currentUseCases.map((useCase, index) => (
+            <motion.div
+              key={useCase.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="bg-white rounded-2xl p-6 border border-border hover:border-brand-300 hover:shadow-xl transition-all duration-300"
+            >
+              <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${useCase.color} text-white mb-4`}>
+                <useCase.icon size={24} />
+              </div>
+              <h3 className="text-lg font-bold mb-4">{useCase.title}</h3>
+              <ul className="space-y-2">
+                {useCase.features.map((feature, idx) => (
+                  <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                    <CheckCircle2 size={16} className="text-brand-500 flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
@@ -162,7 +476,6 @@ function IndustrySection() {
       description: "HVAC, Plumbing, Roofing, Electrical. Capture emergency calls 24/7 and never lose a job to voicemail again.",
       href: "/home-services",
       color: "from-orange-500 to-red-500",
-      stat: "$15k avg job value",
     },
     {
       icon: Stethoscope,
@@ -170,7 +483,6 @@ function IndustrySection() {
       description: "Patient intake, appointment scheduling, and follow-ups. HIPAA-compliant and integrated with your EHR.",
       href: "/medical",
       color: "from-teal-500 to-cyan-500",
-      stat: "$150k/yr in missed calls",
     },
     {
       icon: Building2,
@@ -178,7 +490,6 @@ function IndustrySection() {
       description: "Qualify leads instantly, schedule showings, and never miss a hot buyer. Speed to lead wins deals.",
       href: "/real-estate",
       color: "from-purple-500 to-indigo-500",
-      stat: "5min response = 21x more leads",
     },
   ];
 
@@ -218,8 +529,7 @@ function IndustrySection() {
                   <p className="text-muted-foreground mb-6">
                     {industry.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-brand-600">{industry.stat}</span>
+                  <div className="flex items-center justify-end">
                     <ArrowRight size={20} className="text-brand-500 group-hover:translate-x-2 transition-transform" />
                   </div>
                 </div>
@@ -250,7 +560,7 @@ function FeaturesSection() {
     {
       icon: Calendar,
       title: "Smart Scheduling",
-      description: "Integrates with your calendar to book appointments, send reminders, and reduce no-shows by 40%.",
+      description: "Integrates with your calendar to book appointments, send reminders, and reduce no-shows.",
     },
     {
       icon: Zap,
@@ -311,91 +621,6 @@ function FeaturesSection() {
   );
 }
 
-// Social Proof Section
-function SocialProofSection() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  
-  const stats = [
-    { value: "500+", label: "Businesses Served" },
-    { value: "$2M+", label: "Revenue Recovered" },
-    { value: "1M+", label: "Calls Handled" },
-    { value: "98%", label: "Customer Satisfaction" },
-  ];
-
-  const testimonials = [
-    {
-      quote: "Handvantage recovered $12,000 in the first month alone. It's like having a full-time receptionist that never takes a break.",
-      author: "Mike Johnson",
-      role: "Owner, Johnson HVAC",
-      rating: 5,
-    },
-    {
-      quote: "Our no-show rate dropped by 35% after implementing the AI appointment reminders. Game changer for our practice.",
-      author: "Dr. Sarah Chen",
-      role: "Dental Practice Owner",
-      rating: 5,
-    },
-    {
-      quote: "I closed 3 deals in the first week because the AI qualified leads while I was showing properties. Speed to lead is everything.",
-      author: "David Martinez",
-      role: "Real Estate Agent",
-      rating: 5,
-    },
-  ];
-
-  return (
-    <section className="py-24 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Stats */}
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
-        >
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeInUp}
-              className="text-center"
-            >
-              <p className="text-4xl sm:text-5xl font-bold text-brand-600 mb-2">{stat.value}</p>
-              <p className="text-muted-foreground">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Testimonials */}
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={staggerContainer}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              className="bg-muted rounded-2xl p-8"
-            >
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-warning text-warning" />
-                ))}
-              </div>
-              <p className="text-lg mb-6 italic">"{testimonial.quote}"</p>
-              <div>
-                <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 // CTA Section
 function CTASection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -414,7 +639,6 @@ function CTASection() {
           Ready to Stop Losing Money to Voicemail?
         </motion.h2>
         <motion.p variants={fadeInUp} className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-          Join 500+ businesses that trust Handvantage to handle their calls. 
           Start your free trial today—no credit card required.
         </motion.p>
         <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-4">
@@ -440,9 +664,10 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <HowItWorksSection />
+        <UseCasesSection />
         <IndustrySection />
         <FeaturesSection />
-        <SocialProofSection />
         <CTASection />
       </main>
       <Footer />
