@@ -87,4 +87,13 @@
 - [x] Add Contact page routing
 - [x] Update navigation to link to Contact page (/contact)
 - [x] Test page rendering (contact info, FAQ sections visible)
+- [x] Commit and push to GitHub
+
+
+## Contact Form and Chatbot Fix
+
+- [x] Fix contact form embedding (script now injects directly into form container)
+- [x] Add chatbot iframe widget to Contact page (dedicated section with 600px height)
+- [x] Ensure form renders in correct section (using useRef to target container)
+- [x] Test page structure (sections render correctly)
 - [ ] Commit and push to GitHub

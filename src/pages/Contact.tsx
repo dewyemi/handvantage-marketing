@@ -2,14 +2,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   Mail,
   Phone,
-  MapPin,
-  Clock,
   MessageSquare,
-  Send,
 } from "lucide-react";
 
 const fadeInUp = {
@@ -84,8 +81,8 @@ function ContactInfoSection() {
       icon: MessageSquare,
       title: "Live Chat",
       description: "Chat with our AI assistant 24/7",
-      value: "Start a conversation",
-      href: "#",
+      value: "See chatbot below",
+      href: "#chatbot",
       color: "from-brand-500 to-brand-600",
     },
   ];
@@ -123,18 +120,23 @@ function ContactInfoSection() {
 // Contact Form Section
 function ContactFormSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const formContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Load the contact form script
+    // Create a script element
     const script = document.createElement('script');
     script.src = 'https://portal.handvantage.com/frm/2qQtsupvZea2aEh1S.js';
     script.async = true;
-    document.body.appendChild(script);
+    
+    // Append the script to the form container
+    if (formContainerRef.current) {
+      formContainerRef.current.appendChild(script);
+    }
 
     return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
+      // Cleanup: remove the script when component unmounts
+      if (formContainerRef.current && formContainerRef.current.contains(script)) {
+        formContainerRef.current.removeChild(script);
       }
     };
   }, []);
@@ -162,9 +164,57 @@ function ContactFormSection() {
           variants={fadeInUp}
           className="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-border"
         >
-          {/* The form will be injected here by the external script */}
-          <div id="handvantage-contact-form" className="min-h-[400px]">
-            {/* Form container - script will populate this */}
+          {/* Form container - script will inject the form here */}
+          <div ref={formContainerRef} className="min-h-[400px]">
+            {/* The external script will populate this container */}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Chatbot Section
+function ChatbotSection() {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  return (
+    <section id="chatbot" className="py-24 bg-white" ref={ref}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="text-center mb-12"
+        >
+          <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl font-bold mb-6">
+            Try Our <span className="text-gradient">AI Assistant</span>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-xl text-muted-foreground">
+            Chat with our AI-powered assistant 24/7. Get instant answers to your questions.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeInUp}
+          className="bg-gradient-to-br from-brand-50 to-white rounded-3xl shadow-2xl overflow-hidden border border-brand-200"
+        >
+          {/* Chatbot iframe */}
+          <div className="relative" style={{ height: '600px' }}>
+            <iframe 
+              src="https://cdn.handvantage360.com/chat-widget-v2/index.html?widgetId=019703ff-014f-7d41-a616-2134b54189b7"
+              allow="microphone" 
+              style={{ 
+                border: 'none', 
+                display: 'block', 
+                width: '100%', 
+                height: '100%',
+                borderRadius: '1.5rem'
+              }}
+              title="Handvantage AI Chat Assistant"
+            />
           </div>
         </motion.div>
       </div>
@@ -196,7 +246,7 @@ function FAQSection() {
   ];
 
   return (
-    <section className="py-24 bg-white" ref={ref}>
+    <section className="py-24 bg-gradient-to-br from-slate-50 to-white" ref={ref}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -219,7 +269,7 @@ function FAQSection() {
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="bg-gradient-to-br from-muted/50 to-muted rounded-2xl p-8"
+              className="bg-white rounded-2xl p-8 shadow-md border border-border"
             >
               <h3 className="text-xl font-bold mb-3 flex items-start gap-3">
                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-sm font-bold">
@@ -237,41 +287,6 @@ function FAQSection() {
 }
 
 export default function Contact() {
-  useEffect(() => {
-    // Load chatbot widget CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://cdn.handvantage360.com/chat-widget-v2/style.css';
-    document.head.appendChild(link);
-
-    // Load chatbot widget script
-    const script = document.createElement('script');
-    script.src = 'https://cdn.handvantage360.com/chat-widget-v2/script.js';
-    script.async = true;
-    
-    script.onload = () => {
-      // Initialize chatbot after script loads
-      if (window.ChatWidget) {
-        new window.ChatWidget({
-          widgetId: "019703ff-014f-7d41-a616-2134b54189b7",
-          deployType: "floating",
-        }).init();
-      }
-    };
-    
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup on unmount
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -279,16 +294,10 @@ export default function Contact() {
         <HeroSection />
         <ContactInfoSection />
         <ContactFormSection />
+        <ChatbotSection />
         <FAQSection />
       </main>
       <Footer />
     </div>
   );
-}
-
-// Add TypeScript declaration for ChatWidget
-declare global {
-  interface Window {
-    ChatWidget: any;
-  }
 }
