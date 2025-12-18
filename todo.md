@@ -59,4 +59,19 @@
 - [x] Add routing for /ai-concierge path
 - [x] Update navigation to include AI Concierge link
 - [x] Test page responsiveness and animations
+- [x] Commit and push to GitHub
+
+
+## Link and Content Updates
+
+- [x] Update Privacy Policy link to https://pages.handvantage.com/privacy-policy
+- [x] Update Terms of Service link to https://pages.handvantage.com/terms-conditions
+- [x] Change all email addresses to hello@dg.handvantage.com
+- [x] Update Documentation link to https://docs.handvantage360.com
+- [x] Update API Reference link to https://docs.handvantage360.com
+- [x] Update Blog link to https://blog.handvantage.com
+- [x] Replace footer logo with H logo (Handvantage-logoH.png)
+- [x] Update all "Schedule Demo" and "Watch Demo" buttons to https://portal.handvantage.com/assessment
+- [x] Scan for other areas needing adjustment (About Us and Contact remain as # placeholders)
+- [ ] Test all links in browser
 - [ ] Commit and push to GitHub

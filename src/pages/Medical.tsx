@@ -77,9 +77,11 @@ function HeroSection() {
                   <ArrowRight size={20} />
                 </Button>
               </a>
-              <Button variant="secondary" size="xl">
-                Watch Demo
-              </Button>
+              <a href="https://portal.handvantage.com/assessment" target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" size="xl">
+                  Watch Demo
+                </Button>
+              </a>
             </motion.div>
             
             <motion.div variants={fadeInUp} className="flex items-center gap-4">
@@ -387,9 +389,11 @@ function CTASection() {
               <ArrowRight size={20} />
             </Button>
           </a>
-          <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-teal-600">
-            Schedule Demo
-          </Button>
+          <a href="https://portal.handvantage.com/assessment" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-teal-600">
+              Schedule Demo
+            </Button>
+          </a>
         </motion.div>
         <motion.div variants={fadeInUp} className="mt-8 flex items-center justify-center gap-6 text-white/80 text-sm">
           <span className="flex items-center gap-2">

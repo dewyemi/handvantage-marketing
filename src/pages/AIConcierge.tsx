@@ -82,9 +82,11 @@ function HeroSection() {
                   <ArrowRight size={20} />
                 </Button>
               </a>
-              <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-700">
-                Watch Demo
-              </Button>
+              <a href="https://portal.handvantage.com/assessment" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-700">
+                  Watch Demo
+                </Button>
+              </a>
             </motion.div>
 
             {/* Hero Visual */}
@@ -495,9 +497,11 @@ function CTASection() {
               <ArrowRight size={20} />
             </Button>
           </a>
-          <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-700">
-            Schedule Demo
-          </Button>
+          <a href="https://portal.handvantage.com/assessment" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="xl" className="border-white text-white hover:bg-white hover:text-brand-700">
+              Schedule Demo
+            </Button>
+          </a>
         </motion.div>
         <motion.p variants={fadeInUp} className="text-white/60 text-sm mt-6">
           <CheckCircle2 size={16} className="inline mr-2" />

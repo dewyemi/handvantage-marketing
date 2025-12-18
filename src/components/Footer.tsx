@@ -9,15 +9,15 @@ const footerLinks = {
     { label: "Real Estate", href: "/real-estate" },
   ],
   resources: [
-    { label: "Documentation", href: "https://handvantage.co" },
-    { label: "API Reference", href: "https://handvantage.co/api" },
-    { label: "Blog", href: "#" },
+    { label: "Documentation", href: "https://docs.handvantage360.com" },
+    { label: "API Reference", href: "https://docs.handvantage360.com" },
+    { label: "Blog", href: "https://blog.handvantage.com" },
   ],
   company: [
     { label: "About Us", href: "#" },
     { label: "Contact", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "https://pages.handvantage.com/privacy-policy" },
+    { label: "Terms of Service", href: "https://pages.handvantage.com/terms-conditions" },
   ],
 };
 
@@ -39,7 +39,7 @@ export function Footer() {
               <img
                 src="/logo-icon.png"
                 alt="Handvantage"
-                className="h-10 w-10 brightness-0 invert"
+                className="h-10 w-10"
               />
               <span className="font-display font-bold text-xl">
                 Handvantage
@@ -122,9 +122,9 @@ export function Footer() {
         {/* Contact Info */}
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-wrap gap-8 justify-center text-sm text-white/60">
-            <a href="mailto:support@handvantage.co" className="flex items-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:hello@dg.handvantage.com" className="flex items-center gap-2 hover:text-white transition-colors">
               <Mail size={16} />
-              support@handvantage.co
+              hello@dg.handvantage.com
             </a>
             <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-white transition-colors">
               <Phone size={16} />
