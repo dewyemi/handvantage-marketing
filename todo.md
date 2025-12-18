@@ -73,5 +73,18 @@
 - [x] Replace footer logo with H logo (Handvantage-logoH.png)
 - [x] Update all "Schedule Demo" and "Watch Demo" buttons to https://portal.handvantage.com/assessment
 - [x] Scan for other areas needing adjustment (About Us and Contact remain as # placeholders)
-- [ ] Test all links in browser
+- [x] Test all links in browser
+- [x] Commit and push to GitHub
+
+
+## Contact Page and Social Updates
+
+- [x] Update phone number to +1 778 200 7160
+- [x] Update social media links (Facebook, Instagram, LinkedIn, Twitter)
+- [x] Create Contact page component
+- [x] Embed contact form script (portal.handvantage.com/frm/2qQtsupvZea2aEh1S.js)
+- [x] Embed chatbot widget (Handvantage360 chat widget)
+- [x] Add Contact page routing
+- [x] Update navigation to link to Contact page (/contact)
+- [x] Test page rendering (contact info, FAQ sections visible)
 - [ ] Commit and push to GitHub

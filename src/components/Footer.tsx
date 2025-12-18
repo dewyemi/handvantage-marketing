@@ -15,17 +15,17 @@ const footerLinks = {
   ],
   company: [
     { label: "About Us", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "/contact" },
     { label: "Privacy Policy", href: "https://pages.handvantage.com/privacy-policy" },
     { label: "Terms of Service", href: "https://pages.handvantage.com/terms-conditions" },
   ],
 };
 
 const socialLinks = [
-  { icon: Twitter, href: "https://twitter.com/handvantage", label: "Twitter" },
-  { icon: Linkedin, href: "https://linkedin.com/company/handvantage", label: "LinkedIn" },
-  { icon: Facebook, href: "https://facebook.com/handvantage", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com/handvantage360", label: "Instagram" },
+  { icon: Twitter, href: "https://x.com/handvantage", label: "Twitter" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/handvantage", label: "LinkedIn" },
+  { icon: Facebook, href: "https://www.facebook.com/handvantage", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/handvantage360/", label: "Instagram" },
 ];
 
 export function Footer() {
@@ -126,9 +126,9 @@ export function Footer() {
               <Mail size={16} />
               hello@dg.handvantage.com
             </a>
-            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-white transition-colors">
+            <a href="tel:+17782007160" className="flex items-center gap-2 hover:text-white transition-colors">
               <Phone size={16} />
-              (123) 456-7890
+              +1 778 200 7160
             </a>
           </div>
         </div>
