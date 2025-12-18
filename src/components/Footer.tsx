@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram } from "lucide-react";
+import { Mail, Phone, Twitter, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const footerLinks = {
   solutions: [
+    { label: "AI Concierge", href: "/ai-concierge" },
     { label: "Home Services", href: "/home-services" },
     { label: "Medical & Dental", href: "/medical" },
     { label: "Real Estate", href: "/real-estate" },
